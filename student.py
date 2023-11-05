@@ -50,23 +50,23 @@ class Student:
         
     def changeAge(self):
         self.age += 1
+
+
+
+
+num = 1
+
+def plusOne(number):
+    secondNumber = 2
+    print(secondNumber)
+    return num+1
+
+plusOne(2)
+
+
         
 
 
-henry = Student("Henry", "Lee", 12, 4.0, ["ELA", "ComputerScience", "Math", "Spanish"])
-jack = Student("Jack", "Lee", 12, 4.0, ["Art", "Soccer", "Chemistry", "Physics"])
-henry.changeAge()
-jack.changeAge()
-henry.addClass("English 1")
-henry.removeClass("ELA")
-henry.checkClass("chemistry")
-jack.removeClass("Math")
-jack.checkClass("Math")
-##henry.outputInfo()
-####henry.changeGPA(4.1)
-####henry.outputInfo()
-##jack.outputInfo()
-print(henry)
-print(jack)
+
 
         
