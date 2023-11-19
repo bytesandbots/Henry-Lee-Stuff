@@ -1,3 +1,7 @@
+## we need to implement a variable or property to store last move
+## your next move is determined by your opponents last move
+## Henry, if you could, please bring a notebook with you so you can keep track of notes you take
+
 from board import Board
 import random
 def checkInput(number):
@@ -11,7 +15,7 @@ smallBoards = [Board(), Board(), Board(), Board(), Board(), Board(), Board(), Bo
 while largeBoard.checkWin() == False:
     print("User is X. Computer is O.")
     if firstMove:
-       numAsk = random.randint(0,0)
+       numAsk = random.randint(0,0) ## Must be changed to (0,1) ## Can be possibly exchanged with bool(random.getrandbits(1))
        firstMove = False
        if numAsk == 0:
            player = "X"
@@ -32,7 +36,6 @@ while largeBoard.checkWin() == False:
                     spot = userInput
                 else:
                     continue
-                    
        else:
            player = "O"
            print("The computer is playing first")
