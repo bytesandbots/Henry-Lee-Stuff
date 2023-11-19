@@ -16,14 +16,15 @@ class Board:
            {}   |   {}   |   {}    
                |       |       
 
-        """.format(box[0], box[1], box[2], box[3], box[4], box[5], box[6], box[7], box[8])
+        """.format(self.box[0], self.box[1], self.box[2], self.box[3], self.box[4], self.box[5], self.box[6], self.box[7], self.box[8])
         
-
+    def __str__(self):
+        return self.board
     def fill(self, spot, player):
         if self.box[spot] == f"{spot}":
             self.box[spot] = player
             return True
-        else:
+        else:   
             return False
 
     def check(self, spot, player):
