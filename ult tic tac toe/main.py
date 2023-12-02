@@ -22,29 +22,33 @@ def checkInput(number):
     else:
         return False
 def computerPlay():
-    global smallBoard
-    randBox = random.randint(0,8)
+    global smallBoard, firstMove
+    randBox = random.randint(0,8)   
     while not smallBoards[smallBoard].fill(randBox, "O"):
         randBox = random.randint(0,8)
-    smallBoard = randBox
+    firstMove = smallBoards[smallBoard].check(randBox, "O")
 def playerPlay():
+    global firstMove
     print(largeBoard)
     print(f"        Board {smallBoard}")
     print(smallBoards[smallBoard])
-    print("Choose a box")
-    userInput = input()
+    print("Choose a number to fill")
+    userInput = int(input())
     while not checkInput(userInput):
-        print("Choose a box")
-        box = userInput = input()
+        print("Choose a number to fill")
+        box = userInput = int(input())
     while not smallBoards[smallBoard].fill(userInput, "X"):
-        print("Choose a box")
-        userInput = input()
+        print("Choose a number to fill")
+        userInput = int(input())
         while not checkInput(userInput):
-            print("Choose a box")
-            box = userInput = input()
+            print("Choose a number to fill")
+            box = userInput = int(input())
+    win = smallBoards[smallBoard].check(userInput, "X")
+    if(win == True):
+        firstMove = True
+        print("Player won")
 print("User is X. Computer is O.")
 while largeBoard.checkWin() == False:
-    print("HHHHHH")
     if firstMove:
         ## Must be changed to (0,1) ## Can be possibly exchanged with bool(random.getrandbits(1))
        firstMove = False
@@ -60,14 +64,14 @@ while largeBoard.checkWin() == False:
            smallBoard = int(userInput) 
            print(f"        Board {smallBoard}")
            print(smallBoards[smallBoard])
-           print("Which AVAILABLE box, do you want to go in?")
+           print("Which AVAILABLE box, do you want to fill?")
            spot = userInput = int(input())
            while not smallBoards[smallBoard].fill(spot, player):
                 userInput = int(input())
                 if checkInput(userInput):
                     spot = userInput
                     smallBoard = spot
-                else:
+                else:   
                     continue
        else:
            player = previousMove = "O"
@@ -86,6 +90,7 @@ while largeBoard.checkWin() == False:
             playerPlay()
             previousMove = "X"
         else:
+            print("Computer turn to fill")
             computerPlay()
             previousMove = "O"
         

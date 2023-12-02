@@ -22,92 +22,105 @@ class Board:
         return self.board
     def fill(self, spot, player):
         if self.box[spot] == f"{spot}":
+            
             self.box[spot] = player
+            self.board = r"""
+               |       |       
+           {}   |   {}   |   {}   
+        _______|_______|_______
+               |       |       
+           {}   |   {}   |   {}   
+        _______|_______|_______
+               |       |       
+           {}   |   {}   |   {}    
+               |       |       
+
+        """.format(self.box[0], self.box[1], self.box[2], self.box[3], self.box[4], self.box[5], self.box[6], self.box[7], self.box[8])
             return True
         else:   
             return False
 
     def check(self, spot, player):
         if spot == 0:
-            if box[1] == player:
-                if box[2] == player:
+            if self.box[1] == player:
+                if self.box[2] == player:
                     return True
-            if box[4] == player:
-                if box[8] == player:
+            if self.box[4] == player:
+                if self.box[8] == player:
                     return True
-            if box[3] == player:
-                if box[6] == player:
+            if self.box[3] == player:
+                if self.box[6] == player:
                     return True
         elif spot == 1:
-            if box[4] == player:
-                if box[7] == player:
+            if self.box[4] == player:
+                if self.box[7] == player:
                     return True
-            if box[0] == player:
-                if box[2] == player:
+            if self.box[0] == player:
+                if self.box[2] == player:
                     return True
         elif spot == 2:
-            if box[1] == player:
-                if box [0] == player:
+            if self.box[1] == player:
+                if self.box [0] == player:
                     return True
-            if box[5] == player:
-                if box[8] == player:
+            if self.box[5] == player:
+                if self.box[8] == player:
                     return True
-            if box[4] == player:
-                if box[6] == player:
+            if self.box[4] == player:
+                if self.box[6] == player:
                     return True
         elif spot == 3:
-            if box[0] == player:
-                if box[6] == player:
+            if self.box[0] == player:
+                if self.box[6] == player:
                     return True
-            if box[4] == player:
-                if box[5] == player:
+            if self.box[4] == player:
+                if self.box[5] == player:
                     return True
         elif spot == 4:
-            if box[3] == player:
-                if box[5] == player:
+            if self.box[3] == player:
+                if self.box[5] == player:
                     return True
-            if box[1] == player:
-                if box[7] == player:
+            if self.box[1] == player:
+                if self.box[7] == player:
                     return True
-            if box[0] == player:
-                if box[8] == player:
+            if self.box[0] == player:
+                if self.box[8] == player:
                     return True
-            if box[2] == player:
-                if box[6] == player:
+            if self.box[2] == player:
+                if self.box[6] == player:
                     return True
         elif spot == 5:
-            if box[2] == player:
-                if box[8] == player:
+            if self.box[2] == player:
+                if self.box[8] == player:
                     return True
-            if box[4] == player:
-                if box[3] == player:
+            if self.box[4] == player:
+                if self.box[3] == player:
                     return True
         elif spot == 6:
-            if box[3] == player:
-                if box[0] == player:
+            if self.box[3] == player:
+                if self.box[0] == player:
                     return True
-            if box[7] == player:
-                if box[8] == player:
+            if self.box[7] == player:
+                if self.box[8] == player:
                     return True
-            if box[4] == player:
-                if box[2] == player:
+            if self.box[4] == player:
+                if self.box[2] == player:
                     return True
         elif spot == 7:
-            if box[4] == player:
-                if box[1] == player:
+            if self.box[4] == player:
+                if self.box[1] == player:
                     return True
-            if box[6] == player:
-                if box[8] == player:
+            if self.box[6] == player:
+                if self.box[8] == player:
                     return True
         elif spot == 8:
-            if box[5] == player:
-                if box[2] == player:
+            if self.box[5] == player:
+                if self.box[2] == player:
                     return True
-            if box[7] == player:
-                if box[6] == player:
+            if self.box[7] == player:
+                if self.box[6] == player:
                     return True
-            if box[4] == player:
-                if box[0] == player:
+            if self.box[4] == player:
+                if self.box[0] == player:
                     return True
 
         else:
