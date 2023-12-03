@@ -6,34 +6,36 @@ class Board:
         self.box = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
         self.winner = ""
         self.board = r"""
-               |       |       
-           {}   |   {}   |   {}   
-        _______|_______|_______
-               |       |       
-           {}   |   {}   |   {}   
-        _______|_______|_______
-               |       |       
-           {}   |   {}   |   {}    
-               |       |       
+       |       |       
+   {}   |   {}   |   {}   
+_______|_______|_______
+       |       |       
+   {}   |   {}   |   {}   
+_______|_______|_______
+       |       |       
+   {}   |   {}   |   {}    
+       |       |       
 
         """.format(self.box[0], self.box[1], self.box[2], self.box[3], self.box[4], self.box[5], self.box[6], self.box[7], self.box[8])
         
     def __str__(self):
         return self.board
     def fill(self, spot, player):
+        print(self.box[spot], f"{spot}")
+        print(self.board)
         if self.box[spot] == f"{spot}":
             
             self.box[spot] = player
             self.board = r"""
-               |       |       
-           {}   |   {}   |   {}   
-        _______|_______|_______
-               |       |       
-           {}   |   {}   |   {}   
-        _______|_______|_______
-               |       |       
-           {}   |   {}   |   {}    
-               |       |       
+       |       |       
+   {}   |   {}   |   {}   
+_______|_______|_______
+       |       |       
+   {}   |   {}   |   {}   
+_______|_______|_______
+       |       |       
+   {}   |   {}   |   {}    
+       |       |       
 
         """.format(self.box[0], self.box[1], self.box[2], self.box[3], self.box[4], self.box[5], self.box[6], self.box[7], self.box[8])
             return True
