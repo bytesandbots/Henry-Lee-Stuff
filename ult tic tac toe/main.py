@@ -4,9 +4,13 @@
 
 from board import Board
 import random
+import os
 
+import os
+clear = lambda: os.system('cls')
+clear()
 firstMove = True
-largeBoard = Board("main", mainBoard = True)
+largeBoard = Board("main")
 smallBoards = [Board("0"), Board("1"), Board("2"), Board("3"), Board("4"), Board("5"), Board("6"), Board("7"), Board("8")]
 previousMove = None
 global smallBoard
@@ -26,17 +30,24 @@ def computerPlay():
     randBox = random.randint(0,8)   
     while not smallBoards[smallBoard].fill(randBox, "O"):
         randBox = random.randint(0,8)
-    firstMove = smallBoards[smallBoard].check(randBox, "O")
     print("Computer just played!!\n")
-    print("      Small Board", smallBoard)
+    print(f"      Board {smallBoard}")
     print(smallBoards[smallBoard])
-    smallBoard = randBox
-    if firstMove == True:
-        print("Computer Won")
+    if smallBoards[smallBoard].check(randBox, "O"):
+        print(f"Computer won {smallBoard}")
         largeBoard.fill(smallBoard, "O")
-        print(largeBoard)
+    smallBoard = randBox
 def playerPlay():
     global smallBoard, firstMove
+    if smallBoards[smallBoard].checkWin() == "X" or smallBoards[smallBoard].checkWin() == "O":
+        print(f"       Main Board")
+        print(largeBoard)
+        print("Enter a board number from 0-8")
+        userInput = input()
+        while not checkInput(userInput):
+            print("Enter a board number from 0-8")
+            userInput = input()
+        smallBoard = int(userInput)
     print(f"      Main Board")
     print(largeBoard)
     print(f"        Board {smallBoard}")
@@ -47,23 +58,18 @@ def playerPlay():
         print("Choose a number to fill")
         userInput = int(input())
     while not smallBoards[smallBoard].fill(userInput, "X"):
-        print("smallBoard = ", smallBoard, " userInput = ", userInput) #delete before production
         print("The box you chose is already filled\nChoose another number to fill")
         userInput = int(input())
         while not checkInput(userInput):
             print("Choose a number to fill")
             userInput = int(input())
-    win = smallBoards[smallBoard].check(userInput, "X")
-    print("", flush=True) #needs to be fixed
-    if(win == True):
-        firstMove = True
-        print("Player won")
-        largeBoard.fill(smallBoard, "X", -1)
-    smallBaord = userInput
+    if smallBoards[smallBoard].check(userInput, "X"):
+        print(f"Player won {smallBoard}")
+        largeBoard.fill(smallBoard, "X")
+    smallBoard = userInput
 print("User is X. Computer is O.")
 while largeBoard.checkWin() == False:
     if firstMove:
-        ## Must be changed to (0,1) ## Can be possibly exchanged with bool(random.getrandbits(1))
        firstMove = False
        if bool(random.getrandbits(1)):
            player = previousMove = "X"
@@ -104,15 +110,14 @@ while largeBoard.checkWin() == False:
            smallBoard = randBox
            ## computer needs to choose a box to fill in the small board
     else:
-        print("", flush = True)
         if previousMove == "O":
             playerPlay()
             previousMove = "X"
+            #clear()
         else:
-            print("", flush = True)
             print("Computer turn to fill")
             computerPlay()
             previousMove = "O"
+            #clear()
         
-       
-
+    
