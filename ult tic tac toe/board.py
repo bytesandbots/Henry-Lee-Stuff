@@ -1,9 +1,11 @@
 # we might be able to increase the readability of the code if you use a 2D areay to represent the eah row and column
 # we'll talk about 2D arrays later.
 class Board:
-    def __init__(self):
+    def __init__(self, boardNum, mainBoard = False):
         # I moved the properties into our initializer method since they are specific to each object of this class not to the class itself.
+        self.boardNum = boardNum
         self.box = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+        self.ismainBoard = mainBoard
         self.winner = ""
         self.board = r"""
        |       |       
@@ -20,8 +22,14 @@ _______|_______|_______
         
     def __str__(self):
         return self.board
+    
+    
+    # the print statement has to be removed
     def fill(self, spot, player):
-        print(self.box[spot], f"{spot}")
+        if self.ismainBoard == True:
+            print("     Main Board")
+        else:
+            print("      Board", self.boardNum)
         print(self.board)
         if self.box[spot] == f"{spot}":
             
