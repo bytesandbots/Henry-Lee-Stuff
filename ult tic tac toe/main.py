@@ -37,6 +37,9 @@ def computerPlay():
         print(f"Computer won {smallBoard}")
         largeBoard.fill(smallBoard, "O")
     smallBoard = randBox
+    if largeBoard.check(randBox, "O"):
+        print("Computer won the game")
+        
 def playerPlay():
     global smallBoard, firstMove
     if smallBoards[smallBoard].checkWin() == "X" or smallBoards[smallBoard].checkWin() == "O":
@@ -64,9 +67,13 @@ def playerPlay():
             print("Choose a number to fill")
             userInput = int(input())
     if smallBoards[smallBoard].check(userInput, "X"):
-        print(f"Player won {smallBoard}")
+        print(f"Player won Board {smallBoard}")
         largeBoard.fill(smallBoard, "X")
+        print(largeBoard)
     smallBoard = userInput
+    if largeBoard.check(userInput, "X"):
+        print("Player won the game!")
+        
 print("User is X. Computer is O.")
 while largeBoard.checkWin() == False:
     if firstMove:

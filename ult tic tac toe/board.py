@@ -45,7 +45,7 @@ _______|_______|_______
             return False
 
     def check(self, spot, player):
-        if spot == 0:
+        if spot == 0 and self.box[0] == player:
             if self.box[1] == player:
                 if self.box[2] == player:
                     self.winner = player
@@ -58,7 +58,7 @@ _______|_______|_______
                 if self.box[6] == player:
                     self.winner = player
                     return True
-        elif spot == 1:
+        elif spot == 1 and self.box[1] == player:
             if self.box[4] == player:
                 if self.box[7] == player:
                     self.winner = player
@@ -67,7 +67,7 @@ _______|_______|_______
                 if self.box[2] == player:
                     self.winner = player
                     return True
-        elif spot == 2:
+        elif spot == 2 and self.box[2] == player:
             if self.box[1] == player:
                 if self.box [0] == player:
                     self.winner = player
@@ -80,7 +80,7 @@ _______|_______|_______
                 if self.box[6] == player:
                     self.winner = player
                     return True
-        elif spot == 3:
+        elif spot == 3 and self.box[3] == player:
             if self.box[0] == player:
                 if self.box[6] == player:
                     self.winner = player
@@ -89,7 +89,7 @@ _______|_______|_______
                 if self.box[5] == player:
                     self.winner = player
                     return True
-        elif spot == 4:
+        elif spot == 4 and self.box[4] == player:
             if self.box[3] == player:
                 if self.box[5] == player:
                     self.winner = player
@@ -105,7 +105,7 @@ _______|_______|_______
             if self.box[2] == player:
                 if self.box[6] == player:
                     return True
-        elif spot == 5:
+        elif spot == 5 and self.box[5] == player:
             if self.box[2] == player:
                 if self.box[8] == player:
                     self.winner = player
@@ -114,7 +114,7 @@ _______|_______|_______
                 if self.box[3] == player:
                     self.winner = player
                     return True
-        elif spot == 6:
+        elif spot == 6 and self.box[6] == player:
             if self.box[3] == player:
                 if self.box[0] == player:
                     self.winner = player
@@ -127,7 +127,7 @@ _______|_______|_______
                 if self.box[2] == player:
                     self.winner = player
                     return True
-        elif spot == 7:
+        elif spot == 7 and self.box[7] == player:
             if self.box[4] == player:
                 if self.box[1] == player:
                     self.winner = player
@@ -136,7 +136,7 @@ _______|_______|_______
                 if self.box[8] == player:
                     self.winner = player
                     return True
-        elif spot == 8:
+        elif spot == 8 and self.box[8] == player:
             if self.box[5] == player:
                 if self.box[2] == player:
                     self.winner = player
