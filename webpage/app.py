@@ -1,6 +1,8 @@
-import flask,requests,json,bcrypt, psycopg2
+import flask,requests,json,bcrypt, psycopg2, uuid
 
 app = flask.Flask(__name__)
+app.secret_key = uuid.uuid4().hex
+
 key = bcrypt.kdf(
      password=b'password',
      salt=b'salt',
@@ -58,9 +60,40 @@ def dog_view():
         if len(results) > 0:
             results = results[0]
             if bcrypt.checkpw(pw.encode("utf-8"), results[1].encode("utf-8")):
-                return "Password match"
+                flask.session["uname"] = uname
+                return flask.redirect("/dashboard")
             else:
                 return "Passwords not match"
         else:
             return "No users found"
         
+@app.route("/logout")
+def tiger_view():
+    flask.session.clear()
+    return flask.redirect(flask.url_for("home_view"))
+@app.route("/dashboard")
+def squirrel_view():
+    if(flask.session.get("uname")!= None):
+        url = "postgresql://mathobotix.irvine.lab:VBQRvxA2dP9i@ep-shrill-hill-95052366.us-west-2.aws.neon.tech/neondb?sslmode=require"
+        con = psycopg2.connect(url)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM people WHERE id = %s", (flask.session["uname"],))
+        results = cur.fetchall()
+        if len(results) > 0:
+            results = results[0]
+            
+        return flask.render_template("user dashboard.html", uname = flask.session["uname"], phonenum = results[2], city = results[3])
+    else:
+        return flask.redirect(flask.url_for("home_view"))
+@app.route("/updateinfo", methods = ["POST"])
+def tree_view():
+    if flask.request.method == "POST":
+        phonenum = flask.request.form["pn"]
+        city = flask.request.form["city"]
+        url = "postgresql://mathobotix.irvine.lab:VBQRvxA2dP9i@ep-shrill-hill-95052366.us-west-2.aws.neon.tech/neondb?sslmode=require"
+        con = psycopg2.connect(url)
+        cur = con.cursor()
+        cur.execute("UPDATE people SET phonenumber = %s, city = %s WHERE id = %s", (phonenum, city, flask.session["uname"]))
+        con.commit()
+        con.close()
+        return flask.redirect(flask.url_for("squirrel_view"))
