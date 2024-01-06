@@ -1,13 +1,21 @@
 import flask,requests,json,bcrypt, psycopg2, uuid
+from configparser import ConfigParser
 
 app = flask.Flask(__name__)
 app.secret_key = uuid.uuid4().hex
+config_file = "config.ini"
+config = ConfigParser()
+config.read(config_file)
+api_key = config['gfg']['api']
+url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=imperial'
 
 key = bcrypt.kdf(
      password=b'password',
      salt=b'salt',
      desired_key_bytes=32,
      rounds=100)
+
+
 
 @app.route("/")
 def home_view():
@@ -81,8 +89,11 @@ def squirrel_view():
         results = cur.fetchall()
         if len(results) > 0:
             results = results[0]
-            
-        return flask.render_template("user dashboard.html", uname = flask.session["uname"], phonenum = results[2], city = results[3])
+        weatherinfo = weather(results[3])    
+        if weatherinfo == None:
+            weatherinfo = [0,0,0,0,0]
+        con.close()
+        return flask.render_template("user dashboard.html", uname = flask.session["uname"], phonenum = results[2], city = results[3], weather = weatherinfo)
     else:
         return flask.redirect(flask.url_for("home_view"))
 @app.route("/updateinfo", methods = ["POST"])
@@ -97,3 +108,22 @@ def tree_view():
         con.commit()
         con.close()
         return flask.redirect(flask.url_for("squirrel_view"))
+    
+def weather(city):
+    
+      
+    result = requests.get(url.format(city,api_key))
+    if result:
+        json = result.json()
+        city = json['name']
+        wind = json['wind']['speed']
+        humidity = json['main']['humidity']
+        min = json['main']['temp_min']
+        max = json['main']['temp_max']
+        country = json['sys']
+        temp_farenheit = json['main']['temp']
+        weather1 = json['weather'][0]['main']
+        final = [city, country, round(temp_farenheit, 0), wind, humidity, min, max, weather1]
+        return final
+    else:
+        return None

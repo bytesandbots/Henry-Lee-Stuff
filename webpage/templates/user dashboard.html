@@ -575,8 +575,9 @@ $103,430
 <div class="card-header pb-0">
 <div class="row">
 <div class="col-lg-6 col-7">
-<h6>Projects</h6>
-{{weathercode}}
+<h6>Weather in Your Area</h6>
+<p class="text-sm mb-0 text-capitalize font-weight-bold">Weather in your city is {{weather[2]}} degrees farenheit</p>
+{% extends 'weather.html' %}
 </div>
 </div>
 <footer class="footer pt-3  ">
