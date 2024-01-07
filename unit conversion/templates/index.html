@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="src/preview.png" type="image/x-icon">
+    <title>Unit Conversion</title>
+</head>
+<body>
+    <form id="unitConversionForm">
+        <label for="unitConversionForm"> Unit Conversion</label>
+        <div style="margin-bottom: 20px;" class="input-box">
+            <input type="text" placeholder="Input your value" name= "firstValue" required>
+        </div>
+        <p style="display: inline;">Unit to be converted</p>
+        <select name="initialUnit" id="unitOne">
+            <option value="Kilometers">Kilometers</option>
+            <option value="Miles">Miles</option>
+            <option value="Lbs">Lbs</option>
+            <option value="Kg">Kg</option>
+            <option value="Inches">Inches</option>
+            <option value="Ounces">Ounces</option>
+        </select>
+        <p></p>
+        <p style="display: inline;">Unit to be converted into</p>
+        <select name="secondaryUnit" id="unitTwo">
+            <option value="Kilometers">Kilometers</option>
+            <option value="Miles">Miles</option>
+            <option value="Lbs">Lbs</option>
+            <option value="Kg">Kg</option>
+            <option value="Inches">Inches</option>
+            <option value="Ounces">Ounces</option> 
+        </select>
+        <button style="display:block;" type="submit" form="unitConversionForm" formaction="/">Submit</button>
+        
+    </form>
+</body>
+</html>
