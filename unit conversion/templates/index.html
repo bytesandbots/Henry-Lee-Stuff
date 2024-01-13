@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="src/preview.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./src/preview.png" type="image/x-icon">
     <title>Unit Conversion</title>
 </head>
 <body>
-    <form id="unitConversionForm">
+    <form id="unitConversionForm" method = "POST" action = "/convertUnits">
         <label for="unitConversionForm"> Unit Conversion</label>
         <div style="margin-bottom: 20px;" class="input-box">
             <input type="text" placeholder="Input your value" name= "firstValue" required>
@@ -18,7 +18,6 @@
             <option value="Miles">Miles</option>
             <option value="Lbs">Lbs</option>
             <option value="Kg">Kg</option>
-            <option value="Inches">Inches</option>
             <option value="Ounces">Ounces</option>
         </select>
         <p></p>
@@ -28,11 +27,9 @@
             <option value="Miles">Miles</option>
             <option value="Lbs">Lbs</option>
             <option value="Kg">Kg</option>
-            <option value="Inches">Inches</option>
             <option value="Ounces">Ounces</option> 
         </select>
-        <button style="display:block;" type="submit" form="unitConversionForm" formaction="/">Submit</button>
-        
+        <button style="display:block;" type="submit" >Submit</button>
     </form>
 </body>
 </html>

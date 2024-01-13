@@ -2,13 +2,17 @@ import flask
 import conversion
 app = flask.Flask(__name__)
 
-@app.route("/", methods = ['GET', 'POST'])
-def conversion():
-    if flask.request.method == "POST":
-        unit1 = flask.request.form.get('unitOne')
-        unit2 = flask.request.form.get('unitTwo')
-        value = flask.request.form.get('firstValue')
-        result = conversion.convert(unit1, unit2, value)
-        return "{} is equal to {} {} {}".format(unit1, value, result, value)
+@app.route("/")
+def home():
     return flask.render_template("index.html")
+@app.route("/convertUnits", methods = ['POST'])
+def twist():
+    if flask.request.method == "POST":
+        value = float(flask.request.form.get('firstValue'))
+        unit1 = flask.request.form.get('initialUnit')
+        unit2 = flask.request.form.get('secondaryUnit')
+        result = conversion.Conversion().convert(unit1, unit2, value)
+        return "{} {} is equal to {} {} ".format(value, unit1, result, unit2)
+    
+    
     

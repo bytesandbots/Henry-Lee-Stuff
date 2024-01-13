@@ -5,12 +5,12 @@ class Conversion:
     def convert(self, unit1, unit2, value):
         # Lengths
         # Kilometers
-        if unit1 == "Km":
-            if unit2 == "M":
+        if unit1 == "Kilometers":
+            if unit2 == "Miles":
                 self.result = value * 0.621371
         # Miles
-        elif unit1 == "M":
-            if unit2 == "Km":
+        elif unit1 == "Miles":
+            if unit2 == "Kilometers":
                 self.result = value * 1.60934
         # Weights
         # Pounds
