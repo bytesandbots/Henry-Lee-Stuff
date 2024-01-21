@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../webpage"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "unit conversion"
+	}
+}
