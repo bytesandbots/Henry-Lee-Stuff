@@ -1,6 +1,16 @@
+# READ THE COMMENT IN LINE 42
+# Start with implementing the database connection in your 
+
 import sqlite3 as sql
 from pathlib import Path
 DATABASE_PATH = Path(__file__).parent.joinpath("ticket.db")
+
+def listToString(list) -> str:
+    str = ""
+    for item in list:
+        str = str + item + ","
+    str[:-1] #removes the last comma
+    return str    
 
 class Ticket:
 
@@ -27,10 +37,10 @@ class Ticket:
         self.priority = priority
         self.comment = comment
         self.closed = False
-        with sql.connect("ticket.db") as conn:
+        with sql.connect(DATABASE_PATH) as conn:
             cursor = conn.cursor()
-            #The issue is with the value with type list. The database excepts string. NEED TO BE FIXED NEXT TIME.
-            cursor.execute(f"""INSERT INTO tickets("{title}", "{description}", "{asignee}", "{label}", "{priority}", "{comment}")""")
+            # Please note the function listToString(). It takes a list and returns a string with all of the list items separated with a comma
+            cursor.execute(f"""INSERT INTO tickets VALUES("{self.title}", "{self.description}", "{listToString(self.asignee)}", "{listToString(self.label)}", "{self.priority}", "{listToString(self.comment)}")""")
     
     def add_assignee(self, asignee):
         self.asignee.append(asignee)
